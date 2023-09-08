@@ -39,7 +39,10 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
       return res.status(400).send(`Image URL is required`);
     }
 
-    res.status(200).send("try GET /filteredimage?image_url={{}}")
+    const rtnImg = filterImageFromURL(fimgUrl);
+
+    //res.status(200).send("try GET /filteredimage?image_url={{}}")
+    res.status(200).send(rtnImg)
   } );
   
 
