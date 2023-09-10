@@ -2,8 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
 
-
-
   // Init the Express application
   const app = express();
 
@@ -40,8 +38,10 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
     }
     
     await filterImageFromURL(image_url).then((fImg) => {
+
       res.status(200).sendFile(fImg);
-      deleteLocalFiles(fImg);
+
+      deleteLocalFiles([fImg]);
     },
 
     (error) => {
