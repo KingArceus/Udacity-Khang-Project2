@@ -41,16 +41,16 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
     
     //const OutImage = await filterImageFromURL(fimgUrl);
 
-    filterImageFromURL(fimgUrl).then((reosolveImg) => {
-      res.status(200).sendFile(reosolveImg);
+    filterImageFromURL(fimgUrl).then((fImg) => {
+      res.status(200).sendFile(fImg);
+      deleteLocalFiles(fImg);
     },
+
     (error) => {
       res.status(404).send(`Image not found - Error: ` + error.message);
     });
 
-    //res.status(200).send("try GET /filteredimage?image_url={{}}")
-    
-  } );
+  });
   
   // Start the Server
   app.listen( port, () => {
