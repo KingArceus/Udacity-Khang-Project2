@@ -47,7 +47,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
     },
 
     (error) => {
-      res.status(404).send(`Image not found - Error: ` + error.message);
+      res.status(404).send(`Image URL is invalid - Error: ` + error.message);
     });
 
   });
