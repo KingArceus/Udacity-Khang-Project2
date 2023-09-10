@@ -39,13 +39,17 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
     
     await filterImageFromURL(image_url).then((fImg) => {
 
-      res.status(200).sendFile(fImg);
-
-      deleteLocalFiles([fImg]);
+      res.status(200).sendFile(fImg, function (Error) {
+        if (!Error) {
+          deleteLocalFiles([fImg]);
+        } else {
+          res.status(422).send(`Image URL is invalid - Error: ` + Error.message);
+        }
+      });
     },
 
     (error) => {
-      res.status(404).send(`Image URL is invalid - Error: ` + error.message);
+      res.status(404).send(`Can not find the image - Error: ` + error.message);
     });
 
   });
