@@ -38,14 +38,20 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
     if (!fimgUrl){
       return res.status(400).send(`Image URL is required`);
     }
+    
+    //const OutImage = await filterImageFromURL(fimgUrl);
 
-    const rtnImg = filterImageFromURL(fimgUrl);
+    filterImageFromURL(fimgUrl).then((reosolveImg) => {
+      res.status(200).sendFile(reosolveImg);
+    },
+    (error) => {
+      res.status(404).send(`Image not found - Error: ` + error.message);
+    });
 
     //res.status(200).send("try GET /filteredimage?image_url={{}}")
-    res.status(200).send(rtnImg)
+    
   } );
   
-
   // Start the Server
   app.listen( port, () => {
       console.log( `server running http://localhost:${ port }` );
