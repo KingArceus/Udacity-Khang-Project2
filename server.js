@@ -52,6 +52,11 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
 
   });
   
+  // Root URI call
+  app.get( "/", ( req, res ) => {
+    res.status(200).send("Welcome to Khang's Project!");
+  } );
+
   // Start the Server
   app.listen( port, () => {
       console.log( `server running http://localhost:${ port }` );
