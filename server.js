@@ -41,7 +41,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
     
     //const OutImage = await filterImageFromURL(fimgUrl);
 
-    filterImageFromURL(image_url).then((fImg) => {
+    await filterImageFromURL(image_url).then((fImg) => {
       res.status(200).sendFile(fImg);
       deleteLocalFiles(fImg);
     },
